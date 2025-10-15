@@ -1,1 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Asset Uploader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+    {
+      "imports": {
+        "nanoid": "https://esm.sh/nanoid@5.0.7"
+      }
+    }
+    </script>
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <h1>Upload an Asset</h1>
+            <p class="sub">Choose a type, drop your file, and send.</p>
+            <nav>
+              <a href="index.html" class="link">Uploader</a>
+              <span style="opacity:.5;margin:0 6px;">/</span>
+              <a href="resources.html" class="link">Resources</a>
+            </nav>
+        </header>
 
+        <section class="type-switch">
+            <label class="type-option">
+                <input type="radio" name="assetType" value="face" checked>
+                <span>Face</span>
+            </label>
+            <label class="type-option">
+                <input type="radio" name="assetType" value="map">
+                <span>Map</span>
+            </label>
+            <label class="type-option">
+                <input type="radio" name="assetType" value="gorillashirt">
+                <span>Shirt</span>
+            </label>
+        </section>
+
+        <section class="uploader" id="dropZone" aria-label="File uploader">
+            <div class="uploader-inner">
+                <svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 16V7m0 0l-4 4m4-4l4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20 16a4 4 0 00-4-4h-1.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6 18h12a2 2 0 002-2 4 4 0 00-4-4H9a4 4 0 00-4 4 2 2 0 002 2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="uploader-text">
+                    Drag & drop your file here
+                    <span class="or">or</span>
+                    <label class="file-label">
+                        <input id="fileInput" type="file" hidden>
+                        <span class="file-button">Browse</span>
+                    </label>
+                </p>
+                <p class="hint" id="hint">Accepted: PNG, JPG, WEBP</p>
+            </div>
+        </section>
+
+        <section class="file-info" id="fileInfo" hidden>
+            <div class="file-row">
+                <span id="fileName">No file selected</span>
+                <button id="clearFile" class="clear">Remove</button>
+            </div>
+            <div class="progress" hidden>
+                <div class="bar" id="progressBar" style="width:0%"></div>
+            </div>
+        </section>
+
+        <section class="actions">
+            <button id="submitBtn" class="primary" disabled>Submit</button>
+            <p id="status" role="status" class="status" aria-live="polite"></p>
+        </section>
+
+        <footer class="footer">
+            <small>Asset types and formats are validated before upload.</small>
+        </footer>
+    </main>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
